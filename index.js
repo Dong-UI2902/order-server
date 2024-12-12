@@ -9,7 +9,11 @@ const server = http.createServer(app);
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["http://127.0.0.1:3000/", "http://localhost:3000"],
+    origin: [
+      "http://127.0.0.1:3000/",
+      "http://localhost:3000",
+      "https://inspiring-jelly-43332e.netlify.app",
+    ],
     credentials: true,
     methods: ["POST", "PUT", "GET", "DELETE"],
   })
