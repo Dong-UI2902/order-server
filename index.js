@@ -46,6 +46,9 @@ socketIo.on("connection", (socket) => {
 });
 
 const connectDB = require("./db");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/build", "index.html"));
+});
 connectDB();
 
 const authRouter = require("./routers/auth");
