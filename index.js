@@ -7,13 +7,7 @@ const http = require("http");
 const server = http.createServer(app);
 
 const cors = require("cors");
-app.use(
-  cors({
-    origin: ["*"],
-    credentials: true,
-    methods: ["POST", "PUT", "GET", "DELETE"],
-  })
-);
+app.use(cors());
 
 const socketIo = require("socket.io")(server, {
   cors: {
