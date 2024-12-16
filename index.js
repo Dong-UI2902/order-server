@@ -13,7 +13,7 @@ app.use(
       "http://127.0.0.1:3000/",
       "http://localhost:3000",
       "https://inspiring-jelly-43332e.netlify.app",
-      "https://order-server-six.vercel.app",
+      "https://order-server-94jlugatm-dongs-projects-3d51270f.vercel.app",
     ],
     credentials: true,
     methods: ["POST", "PUT", "GET", "DELETE"],
@@ -26,7 +26,7 @@ const socketIo = require("socket.io")(server, {
       "http://127.0.0.1:3000/",
       "http://localhost:3000",
       "https://inspiring-jelly-43332e.netlify.app",
-      "https://order-server-six.vercel.app",
+      "https://order-server-94jlugatm-dongs-projects-3d51270f.vercel.app",
     ],
   },
 });
