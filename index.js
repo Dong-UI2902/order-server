@@ -9,12 +9,7 @@ const server = http.createServer(app);
 const cors = require("cors");
 app.use(
   cors({
-    origin: [
-      "http://127.0.0.1:3000/",
-      "http://localhost:3000",
-      "https://inspiring-jelly-43332e.netlify.app",
-      "https://order-server-94jlugatm-dongs-projects-3d51270f.vercel.app",
-    ],
+    origin: ["*"],
     credentials: true,
     methods: ["POST", "PUT", "GET", "DELETE"],
   })
@@ -22,12 +17,7 @@ app.use(
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: [
-      "http://127.0.0.1:3000/",
-      "http://localhost:3000",
-      "https://inspiring-jelly-43332e.netlify.app",
-      "https://order-server-94jlugatm-dongs-projects-3d51270f.vercel.app",
-    ],
+    origin: ["*"],
   },
 });
 
@@ -45,10 +35,6 @@ socketIo.on("connection", (socket) => {
   });
 });
 
-const connectDB = require("./db");
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/build", "index.html"));
-});
 connectDB();
 
 const authRouter = require("./routers/auth");
