@@ -17,11 +17,7 @@ app.use(
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: [
-      "http://127.0.0.1:3000/",
-      "http://localhost:3000",
-      "https://inspiring-jelly-43332e.netlify.app",
-    ],
+    origin: "*",
   },
 });
 
@@ -39,11 +35,8 @@ socketIo.on("connection", (socket) => {
   });
 });
 
+const connectDB = require("./db");
 connectDB();
-
-app.get("/", (req, res) => {
-  res.json("welcome to our server");
-});
 
 const authRouter = require("./routers/auth");
 app.use("/api/auth", authRouter);
