@@ -38,6 +38,10 @@ socketIo.on("connection", (socket) => {
 const connectDB = require("./db");
 connectDB();
 
+app.get("/", (req, res) => {
+  res.json("welcome to our server");
+});
+
 const authRouter = require("./routers/auth");
 app.use("/api/auth", authRouter);
 
