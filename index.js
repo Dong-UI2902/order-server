@@ -7,11 +7,25 @@ const http = require("http");
 const server = http.createServer(app);
 
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://127.0.0.1:3000/",
+      "http://localhost:3000",
+      "https://inspiring-jelly-43332e.netlify.app",
+    ],
+    credentials: true,
+    methods: ["POST", "PUT", "GET", "DELETE"],
+  })
+);
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: "*",
+    origin: [
+      "http://127.0.0.1:3000/",
+      "http://localhost:3000",
+      "https://inspiring-jelly-43332e.netlify.app",
+    ],
   },
 });
 
@@ -31,10 +45,6 @@ socketIo.on("connection", (socket) => {
 
 const connectDB = require("./db");
 connectDB();
-
-app.get("/", (req, res) => {
-  res.json("welcome to our server");
-});
 
 const authRouter = require("./routers/auth");
 app.use("/api/auth", authRouter);
