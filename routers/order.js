@@ -59,7 +59,7 @@ router.get("/:id", async (req, res) => {
 // @route POST api/order
 // @desc Create new order
 // @access Private
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   try {
     const {
       name,
@@ -110,7 +110,7 @@ router.post("/", async (req, res) => {
 // @route PUT api/order/:id
 // @desc Update an order
 // @access Private
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   try {
     const newOrder = req.body;
 
@@ -146,7 +146,7 @@ router.put("/:id", async (req, res) => {
 // @route DELETE api/order/:id
 // @desc Delete an order
 // @access Private
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
     const { id } = req.params;
     if (!id)
