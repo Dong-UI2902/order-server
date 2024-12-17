@@ -15,8 +15,20 @@ const schema = new mongoose.Schema({
     required: true,
   },
   cod: {
-    type: Number,
-    required: true,
+    paid: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    total: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    deposit: {
+      type: Number,
+      default: 0,
+    },
   },
   products: {
     type: [],
@@ -42,6 +54,9 @@ const schema = new mongoose.Schema({
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: "users",
+  },
+  desc: {
+    type: String,
   },
   createdAt: {
     type: Date,

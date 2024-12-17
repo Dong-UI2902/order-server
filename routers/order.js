@@ -67,9 +67,11 @@ router.post("/", async (req, res) => {
       address,
       cod,
       products,
+      page,
       type,
       status,
       deliveredBy,
+      desc,
       createdBy,
     } = req.body;
 
@@ -85,9 +87,11 @@ router.post("/", async (req, res) => {
       address,
       cod,
       products,
+      page,
       type,
       status,
       deliveredBy,
+      desc,
       createdBy: createdBy._id,
     });
 
