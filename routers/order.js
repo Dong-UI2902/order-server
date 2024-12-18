@@ -40,7 +40,7 @@ router.post("/filter", async (req, res) => {
     const data = await Order.find({
       createdAt: {
         $gte: new Date(since),
-        $lte: new Date(until),
+        $lte: new Date(until).setHours(23, 59, 59),
       },
       ...filter,
     })
