@@ -31,6 +31,35 @@ router.get("/", async (req, res) => {
 });
 
 // @route GET api/order
+// @desc Get all orders between two dates
+// @access Public
+router.post("/filter", async (req, res) => {
+  try {
+    const { since, until, filter } = req.body;
+
+    const data = await Order.find({
+      createdAt: {
+        $gte: new Date(since.substring(0, 10)).setHours(0, 0, 0, 0),
+        $lte: new Date(until.substring(0, 10)).setHours(0, 0, 0, 0) + 86400000,
+      },
+      ...filter,
+    })
+      .sort({
+        createdAt: -1,
+      })
+      .populate(["createdBy"]);
+
+    return res.json({
+      success: true,
+      message: "Get data successfully",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message }).end();
+  }
+});
+
+// @route GET api/order
 // @desc Get an orders
 // @access Public
 router.get("/:id", async (req, res) => {
