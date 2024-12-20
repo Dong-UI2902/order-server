@@ -36,21 +36,23 @@ router.get("/", async (req, res) => {
 router.post("/filter", async (req, res) => {
   try {
     const { since, until, filter } = req.body;
-
-    const condition = Object.fromEntries(
+    let condition = Object.fromEntries(
       Object.entries(filter).filter(([_, v]) => v != "")
     );
+
+    if (since || until)
+      condition = {
+        createdAt: {
+          $gte: new Date(since),
+          $lte: new Date(until).setHours(23, 59, 59),
+        },
+        ...condition,
+      };
 
     if (condition.deliveredBy)
       condition.deliveredBy = formatToObjectId(condition.deliveredBy);
 
-    const data = await Order.find({
-      createdAt: {
-        $gte: new Date(since),
-        $lte: new Date(until).setHours(23, 59, 59),
-      },
-      ...condition,
-    })
+    const data = await Order.find(condition)
       .sort({
         createdAt: -1,
       })
