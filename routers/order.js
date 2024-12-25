@@ -94,6 +94,34 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// @route GET api/order
+// @desc Get an orders
+// @access Public
+router.get("/search/:phoneNumber", async (req, res) => {
+  try {
+    const { phoneNumber } = req.params;
+
+    const data = await Order.find({
+      phoneNumber: { $regex: ".*" + phoneNumber + ".*", $options: "i" },
+    });
+    if (!data)
+      return res.status(400).json({
+        success: false,
+        message: `Không thể tìm thấy đơn hàng với số điện thoại: ${phoneNumber}`,
+      });
+
+    return res.json({
+      success: true,
+      message: "Lấy đơn hàng thành công",
+      data,
+    });
+  } catch (error) {
+    console.log(error.message);
+
+    return res.status(500).json({ message: error.message }).end();
+  }
+});
+
 // @route POST api/order
 // @desc Create new order
 // @access Private
