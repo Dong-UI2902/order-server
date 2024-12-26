@@ -163,10 +163,11 @@ router.post("/", verifyToken, async (req, res) => {
 
     // if (type === "SHIPPER" && deliveredBy) newOrder.deliveredBy = deliveredBy;
 
-    await newOrder.save();
+    const data = await newOrder.save();
     return res.json({
       success: true,
       message: "Tạo đơn hàng thành công",
+      data,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message }).end();
