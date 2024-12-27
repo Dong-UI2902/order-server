@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["*"],
+    origin: "*",
     credentials: true,
     methods: ["POST", "PUT", "GET", "DELETE"],
   })
