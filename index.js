@@ -31,11 +31,11 @@ socketIo.on("connection", (socket) => {
   console.log("New client connected" + socket.id);
 
   socket.on("sendDataToServer", function (data) {
-    socket.broadcast.emit("sendDataToClient", { ...data });
+    socket.emit("sendDataToClient", { ...data });
   });
 
   socket.on("sendDataUpdateToServer", function (data) {
-    socket.broadcast.emit("sendDataUpdateToClient", { ...data });
+    socket.emit("sendDataUpdateToClient", { ...data });
   });
 
   socket.on("disconnect", () => {
