@@ -26,6 +26,7 @@ const socketIo = require("socket.io")(server, {
       "http://localhost:3000",
       "https://inspiring-jelly-43332e.netlify.app",
     ],
+    methods: ["GET", "POST"],
   },
 });
 
