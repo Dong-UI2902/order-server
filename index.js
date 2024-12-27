@@ -34,11 +34,11 @@ socketIo.on("connection", (socket) => {
   console.log("New client connected" + socket.id);
 
   socket.on("sendDataToServer", function (data) {
-    socketIo.emit("sendDataToClient", { ...data });
+    socket.broadcast.emit("sendDataToClient", { ...data });
   });
 
   socket.on("sendDataUpdateToServer", function (data) {
-    socketIo.emit("sendDataUpdateToClient", { ...data });
+    socket.broadcast.emit("sendDataUpdateToClient", { ...data });
   });
 
   socket.on("disconnect", () => {
