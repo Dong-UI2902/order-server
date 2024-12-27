@@ -21,12 +21,7 @@ app.use(
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: [
-      "http://127.0.0.1:3000/",
-      "http://localhost:3000",
-      "https://inspiring-jelly-43332e.netlify.app",
-      "https://order-server-nine.vercel.app",
-    ],
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
