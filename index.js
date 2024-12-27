@@ -34,17 +34,15 @@ socketIo.on("connection", (socket) => {
   console.log("New client connected" + socket.id);
 
   socket.on("sendDataToServer", function (data) {
-    // Handle khi có sự kiện tên là sendDataClient từ phía client
-    socketIo.emit("sendDataToClient", { ...data }); // phát sự kiện  có tên sendDataServer cùng với dữ liệu tin nhắn từ phía server
+    socketIo.emit("sendDataToClient", { ...data });
   });
 
   socket.on("sendDataUpdateToServer", function (data) {
-    // Handle khi có sự kiện tên là sendDataClient từ phía client
-    socketIo.emit("sendDataUpdateToClient", { ...data }); // phát sự kiện  có tên sendDataServer cùng với dữ liệu tin nhắn từ phía server
+    socketIo.emit("sendDataUpdateToClient", { ...data });
   });
 
   socket.on("disconnect", () => {
-    console.log("Client disconnected"); // Khi client disconnect thì log ra terminal.
+    console.log("Client disconnected");
   });
 });
 
