@@ -3,22 +3,25 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-const http = require("http");
-const server = http.createServer(app);
+const { createServer } = require("http");
+const server = createServer(app);
 
 const cors = require("cors");
 app.use(
   cors({
-    origin: "*",
-    // credentials: true,
+    origin: [
+      "http://localhost:3000",
+      "https://inspiring-jelly-43332e.netlify.app",
+    ],
+    credentials: true,
     methods: ["POST", "PUT", "GET", "DELETE"],
   })
 );
 
 const socketIo = require("socket.io")(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: "https://inspiring-jelly-43332e.netlify.app",
+    credentials: true,
   },
 });
 
