@@ -19,14 +19,9 @@ app.use(
 );
 
 const socketIo = require("socket.io")(server, {
-  cors: {
-    origin: [
-      "http://localhost:3000",
-      "https://inspiring-jelly-43332e.netlify.app",
-    ],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true,
+  allowRequest: (req, callback) => {
+    const noOriginHeader = req.headers.origin === undefined;
+    callback(null, noOriginHeader); // only allow requests without 'origin' header
   },
 });
 
