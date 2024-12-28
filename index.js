@@ -10,7 +10,7 @@ const cors = require("cors");
 app.use(
   cors({
     origin: "*",
-    credentials: true,
+    // credentials: true,
     methods: ["POST", "PUT", "GET", "DELETE"],
   })
 );
