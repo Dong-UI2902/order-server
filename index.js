@@ -7,16 +7,7 @@ const { createServer } = require("http");
 const server = createServer(app);
 
 const cors = require("cors");
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://inspiring-jelly-43332e.netlify.app",
-    ],
-    credentials: true,
-    methods: ["POST", "PUT", "GET", "DELETE"],
-  })
-);
+app.use(cors());
 
 const socketIo = require("socket.io")(server, {
   cors: {
@@ -26,10 +17,6 @@ const socketIo = require("socket.io")(server, {
     ],
     methods: ["GET", "POST"],
     credentials: true,
-  },
-  allowRequest: (req, callback) => {
-    const noOriginHeader = req.headers.origin === undefined;
-    callback(null, true); // only allow requests without 'origin' header
   },
 });
 
