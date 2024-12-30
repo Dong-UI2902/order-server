@@ -17,7 +17,6 @@ const socketIo = require("socket.io")(server, {
       "wss://order-server-nine.vercel.app",
     ],
     methods: ["GET", "POST"],
-    credentials: true,
   },
 });
 
