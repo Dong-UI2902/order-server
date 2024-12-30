@@ -14,6 +14,7 @@ const socketIo = require("socket.io")(server, {
     origin: [
       "http://localhost:3000",
       "https://inspiring-jelly-43332e.netlify.app",
+      "wss://order-server-nine.vercel.app",
     ],
     methods: ["GET", "POST"],
     credentials: true,
